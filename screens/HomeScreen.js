@@ -31,6 +31,13 @@ export default function HomeScreen(props) {
 
   return (
     <SafeAreaView style={Styles.safeAreaView}>
+        <ScrollView style= {Styles.container} contentContainerStyle={Styles.contentContainer}>
+            <View style= {Styles.homeLogoContainer}>
+                <Pressable onPress={toggleLogo} >
+                    <Image source={imageIndex[isLogoColor?"logo":"mono"]} style={Styles.homeLogo} resizeMode='contain'/>
+                </Pressable>
+            </View>
+        </ScrollView>
     </SafeAreaView>
   );
 }
