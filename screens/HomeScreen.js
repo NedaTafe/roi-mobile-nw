@@ -31,7 +31,6 @@ export default function HomeScreen(props) {
 
   return (
     <SafeAreaView style={Styles.safeAreaView}>
-      <Box color="#20B2AA" />
     </SafeAreaView>
   );
 }

@@ -128,7 +128,6 @@ export default function ViewPeopleScreen(props) {
   // Main output of the screen component
   return (
     <SafeAreaView style={Styles.safeAreaView}>
-      <Box color="#595959" />
       {/* {displayPeople()} */}
     </SafeAreaView>
   );

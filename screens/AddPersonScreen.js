@@ -142,7 +142,6 @@ export default function AddPersonScreen(props) {
   // Main output of the screen component
   return (
     <SafeAreaView style={Styles.safeAreaView}>
-      <Box color="#941a1d" />
     </SafeAreaView>
   );
 }
