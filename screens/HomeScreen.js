@@ -37,6 +37,27 @@ export default function HomeScreen(props) {
                     <Image source={imageIndex[isLogoColor?"logo":"mono"]} style={Styles.homeLogo} resizeMode='contain'/>
                 </Pressable>
             </View>
+            <View style={Styles.homeHeadingContainer}> 
+                <Text style={Styles.homeHeading}>
+                    "ROI HR Management System - Home"
+                </Text>    
+            </View>
+            <View style={Styles.homeButtonContainer}>
+                <MyButton
+                  text = "Staff Directory"
+                  type='major'
+                  size = 'large'
+                  onPress={showViewPeople}
+                  buttonStyle={Styles.homeButton}
+               />                
+                <MyButton
+                  text = "Show Help"
+                  type='default'
+                  size = 'large'
+                  onPress={showHelp}
+                  buttonStyle={Styles.homeButton}
+                />             
+            </View>
         </ScrollView>
     </SafeAreaView>
   );
