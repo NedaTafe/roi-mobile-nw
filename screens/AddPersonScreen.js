@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Picker } from '@react-native-picker/picker';
 
 // Import helper code
-import { RoiDeletePerson, RoiGetDepartments, RoiGetPerson, RoiUpdatePerson, RoiAddPerson } from '../utils/RoiApi';
+import { RoiDeletePerson, RoiGetDepartments, RoiGetPerson, RoiUpdatePerson, RoiAddPerson } from '../utils/__RoiApi';
 import { PopupOk, PopupOkCancel } from '../utils/Popup';
 
 // Import styling and components

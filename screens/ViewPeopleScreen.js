@@ -5,7 +5,7 @@ import { successMessage, warningMessage, dangerMessage, infoMessage, defaultMess
 import NetInfo from '@react-native-community/netinfo';
 
 // Import helper code
-import { RoiDeletePerson, RoiGetPeople } from '../utils/RoiApi';
+import { RoiDeletePerson, RoiGetPeople } from '../utils/__RoiApi';
 import { PopupOk, PopupOkCancel } from '../utils/Popup';
 
 // Import styling and components
@@ -117,9 +117,42 @@ export default function ViewPeopleScreen(props) {
     return people.map((p) => {
       // Create an output view for each item
       return (
-        <View>
-          <View>{p.name}</View>
-          <View>{p.phone}</View>
+        <View key={p.id} style={Styles.dataContainerHorizontal}>
+            <View style={Styles.personListItemDetails}>
+              <TextParagraph style={Styles.personListItemName}>{p.name}</TextParagraph>
+              <TextParagraph style={Styles.personListItemName}>{p.department?.name ?? '---'}</TextParagraph> 
+              {/* if dep is null return --- or return the department.name */}
+              <TextParagraph style={Styles.personListItemName}>{p.phone}</TextParagraph>
+            </View>
+            <ButtonContainer direction="column"> 
+              <MyButton 
+              text="Info" 
+              type="major" 
+              size="small" 
+              onPress={()=> {showViewPerson(p)}} 
+              buttonStyle={Styles.personListItemButton}
+              textStyle={Styles.personListItemButtonText}
+              >
+              </MyButton>
+              <MyButton 
+              text="Edit" 
+              type="default" 
+              size="small" 
+              onPress={()=> {showEditPerson(p)}} 
+              buttonStyle={Styles.personListItemButton}
+              textStyle={Styles.personListItemButtonText}
+              >
+              </MyButton>
+              <MyButton 
+              text="Delete" 
+              type="minor" 
+              size="small" 
+              onPress={()=> {deletePerson(p)}} 
+              buttonStyle={Styles.personListItemButton}
+              textStyle={Styles.personListItemButtonText}
+              >
+              </MyButton>
+            </ButtonContainer>
         </View>
       );
     });
@@ -128,7 +161,7 @@ export default function ViewPeopleScreen(props) {
   // Main output of the screen component
   return (
     <SafeAreaView style={Styles.safeAreaView}>
-      {/* {displayPeople()} */}
+      {displayPeople()}
     </SafeAreaView>
   );
 }

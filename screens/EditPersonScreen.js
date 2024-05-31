@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Picker } from '@react-native-picker/picker';
 
 // Import helper code
-import { RoiDeletePerson, RoiGetDepartments, RoiGetPerson, RoiUpdatePerson } from '../utils/RoiApi';
+import { RoiDeletePerson, RoiGetDepartments, RoiGetPerson, RoiUpdatePerson } from '../utils/__RoiApi';
 import { PopupOk, PopupOkCancel } from '../utils/Popup';
 
 // Import styling and components
@@ -137,7 +137,51 @@ export default function EditPersonScreen(props) {
   // Main output of the screen component
   return (
     <SafeAreaView style={Styles.safeAreaView}>
+      <ScrollView>
+        <TextH1></TextH1>
+        <View style={Styles.form}>
 
+          <View style={Styles.fieldSet}> 
+            <TextParagraph style={Styles.legend}>Details</TextParagraph>
+
+              <View style={Styles.formRow}>
+                <TextLabel>Name:</TextLabel>
+                <TextInput value={name} onChangeText={setName} style={Styles.textInput}></TextInput>
+              </View>
+
+              <View style={Styles.formRow}>
+                <TextLabel>Phone:</TextLabel>
+                <TextInput value={phone} onChangeText={setPhone} style={Styles.textInput}></TextInput>
+              </View>
+              
+              <View style={Styles.formRow}>
+              <TextLabel>Department:</TextLabel>
+              <Picker 
+               selectedValue={departmentId} 
+               onValueChange={setDepartmentId} 
+               style={Styles.picker} 
+               itemStyle={Styles.pickerItem}
+               >
+                {
+                  DisplayDepartmentListItems()
+                }
+              </Picker>
+              </View>
+
+          </View>
+
+          <View style={Styles.fieldSet}>
+            <TextParagraph style={Styles.legend}>Address</TextParagraph>
+
+            <View style={Styles.formRow}>
+                <TextLabel>Street:</TextLabel>
+                <TextInput value={street} onChangeText={setStreet} style={Styles.textInput}></TextInput>
+              </View>
+
+            </View>
+
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

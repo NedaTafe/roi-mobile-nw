@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Import helper code
-import { RoiDeletePerson, RoiGetPerson } from '../utils/RoiApi';
+import { RoiDeletePerson, RoiGetPerson } from '../utils/__RoiApi';
 import { PopupOk, PopupOkCancel } from '../utils/Popup';
 
 // Import styling and components
