@@ -178,6 +178,26 @@ export default function EditPersonScreen(props) {
                 <TextInput value={street} onChangeText={setStreet} style={Styles.textInput}></TextInput>
               </View>
 
+              <View style={Styles.formRow}>
+                <TextLabel>City:</TextLabel>
+                <TextInput value={street} onChangeText={setCity} style={Styles.textInput}></TextInput>
+              </View>
+
+              <View style={Styles.formRow}>
+                <TextLabel>State:</TextLabel>
+                <TextInput value={street} onChangeText={setState} style={Styles.textInput}></TextInput>
+              </View>
+
+              <View style={Styles.formRow}>
+                <TextLabel>zip:</TextLabel>
+                <TextInput value={street} onChangeText={setZip} style={Styles.textInput}></TextInput>
+              </View>
+
+              <View style={Styles.formRow}>
+                <TextLabel>country:</TextLabel>
+                <TextInput value={street} onChangeText={setCountry} style={Styles.textInput}></TextInput>
+              </View>
+
             </View>
 
         </View>
