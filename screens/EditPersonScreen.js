@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { View, ScrollView, TextInput } from 'react-native';
+import { View, ScrollView, TextInput, NativeModules, ViewComponent } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Picker } from '@react-native-picker/picker';
 
 // Import helper code
-import { RoiDeletePerson, RoiGetDepartments, RoiGetPerson, RoiUpdatePerson } from '../utils/__RoiApi';
+import { RoiDeletePerson, RoiGetDepartments, RoiGetPerson, RoiUpdatePerson } from '../utils/RoiApi';
 import { PopupOk, PopupOkCancel } from '../utils/Popup';
 
 // Import styling and components
@@ -117,7 +117,7 @@ export default function EditPersonScreen(props) {
   /**
    * Edit a person from the database
    */
-  function editPerson() {
+  function savePerson() {
     // Update the person using the API
     RoiUpdatePerson(id, name, phone, departmentId, street, city, state, zip, country)
       .then((data) => {
@@ -137,8 +137,8 @@ export default function EditPersonScreen(props) {
   // Main output of the screen component
   return (
     <SafeAreaView style={Styles.safeAreaView}>
-      <ScrollView>
-        <TextH1></TextH1>
+      <ScrollView style={Styles.container} contentContainerStyle={Styles.contentContainer} >
+        <TextH1 style={{marginTop:0}}>Edit:{nameOriginal}</TextH1>
         <View style={Styles.form}>
 
           <View style={Styles.fieldSet}> 
@@ -180,25 +180,31 @@ export default function EditPersonScreen(props) {
 
               <View style={Styles.formRow}>
                 <TextLabel>City:</TextLabel>
-                <TextInput value={street} onChangeText={setCity} style={Styles.textInput}></TextInput>
+                <TextInput value={city} onChangeText={setCity} style={Styles.textInput}></TextInput>
               </View>
 
               <View style={Styles.formRow}>
                 <TextLabel>State:</TextLabel>
-                <TextInput value={street} onChangeText={setState} style={Styles.textInput}></TextInput>
+                <TextInput value={state} onChangeText={setState} style={Styles.textInput}></TextInput>
               </View>
 
               <View style={Styles.formRow}>
-                <TextLabel>zip:</TextLabel>
-                <TextInput value={street} onChangeText={setZip} style={Styles.textInput}></TextInput>
+                <TextLabel>Zip:</TextLabel>
+                <TextInput value={zip} onChangeText={setZip} style={Styles.textInput}></TextInput>
               </View>
 
               <View style={Styles.formRow}>
-                <TextLabel>country:</TextLabel>
-                <TextInput value={street} onChangeText={setCountry} style={Styles.textInput}></TextInput>
+                <TextLabel>Country:</TextLabel>
+                <TextInput value={country} onChangeText={setCountry} style={Styles.textInput}></TextInput>
               </View>
 
             </View>
+
+        </View>
+
+        <View style={[Styles.personButtonContainer,{borderBottomWidth:0}]}>
+          <MyButton text="Save" type="major" size="medium" onPress={savePerson}/>
+          <MyButton text="Cancel" type="minor" size="medium" onPress={showViewPeople}/>
 
         </View>
       </ScrollView>

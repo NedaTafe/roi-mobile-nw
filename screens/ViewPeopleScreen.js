@@ -5,7 +5,7 @@ import { successMessage, warningMessage, dangerMessage, infoMessage, defaultMess
 import NetInfo from '@react-native-community/netinfo';
 
 // Import helper code
-import { RoiDeletePerson, RoiGetPeople } from '../utils/__RoiApi';
+import { RoiDeletePerson, RoiGetPeople } from '../utils/RoiApi';
 import { PopupOk, PopupOkCancel } from '../utils/Popup';
 
 // Import styling and components

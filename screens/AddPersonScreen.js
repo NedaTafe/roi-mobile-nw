@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Picker } from '@react-native-picker/picker';
 
 // Import helper code
-import { RoiDeletePerson, RoiGetDepartments, RoiGetPerson, RoiUpdatePerson, RoiAddPerson } from '../utils/__RoiApi';
+import { RoiDeletePerson, RoiGetDepartments, RoiGetPerson, RoiUpdatePerson, RoiAddPerson } from '../utils/RoiApi';
 import { PopupOk, PopupOkCancel } from '../utils/Popup';
 
 // Import styling and components
@@ -142,6 +142,77 @@ export default function AddPersonScreen(props) {
   // Main output of the screen component
   return (
     <SafeAreaView style={Styles.safeAreaView}>
+      <ScrollView style={Styles.container} contentContainerStyle={Styles.contentContainer} >
+        <TextH1 style={{marginTop:0}}>Add New Person</TextH1>
+        <View style={Styles.form}>
+
+          <View style={Styles.fieldSet}> 
+            <TextParagraph style={Styles.legend}>Details</TextParagraph>
+
+              <View style={Styles.formRow}>
+                <TextLabel>Name:</TextLabel>
+                <TextInput value={name} onChangeText={setName} style={Styles.textInput}></TextInput>
+              </View>
+
+              <View style={Styles.formRow}>
+                <TextLabel>Phone:</TextLabel>
+                <TextInput value={phone} onChangeText={setPhone} style={Styles.textInput}></TextInput>
+              </View>
+              
+              <View style={Styles.formRow}>
+              <TextLabel>Department:</TextLabel>
+              <Picker 
+               selectedValue={departmentId} 
+               onValueChange={setDepartmentId} 
+               style={Styles.picker} 
+               itemStyle={Styles.pickerItem}
+               >
+                {
+                  DisplayDepartmentListItems()
+                }
+              </Picker>
+              </View>
+
+          </View>
+
+          <View style={Styles.fieldSet}>
+            <TextParagraph style={Styles.legend}>Address</TextParagraph>
+
+            <View style={Styles.formRow}>
+                <TextLabel>Street:</TextLabel>
+                <TextInput value={street} onChangeText={setStreet} style={Styles.textInput}></TextInput>
+              </View>
+
+              <View style={Styles.formRow}>
+                <TextLabel>City:</TextLabel>
+                <TextInput value={city} onChangeText={setCity} style={Styles.textInput}></TextInput>
+              </View>
+
+              <View style={Styles.formRow}>
+                <TextLabel>State:</TextLabel>
+                <TextInput value={state} onChangeText={setState} style={Styles.textInput}></TextInput>
+              </View>
+
+              <View style={Styles.formRow}>
+                <TextLabel>Zip:</TextLabel>
+                <TextInput value={zip} onChangeText={setZip} style={Styles.textInput}></TextInput>
+              </View>
+
+              <View style={Styles.formRow}>
+                <TextLabel>Country:</TextLabel>
+                <TextInput value={country} onChangeText={setCountry} style={Styles.textInput}></TextInput>
+              </View>
+
+            </View>
+
+        </View>
+
+        <View style={[Styles.personButtonContainer,{borderBottomWidth:0}]}>
+          <MyButton text="Add" type="major" size="medium" onPress={AddPerson}/>
+          <MyButton text="Cancel" type="minor" size="medium" onPress={showViewPeople}/>
+
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
