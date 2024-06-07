@@ -118,41 +118,42 @@ export default function ViewPeopleScreen(props) {
       // Create an output view for each item
       return (
         <View key={p.id} style={Styles.dataContainerHorizontal}>
-            <View style={Styles.personListItemDetails}>
-              <TextParagraph style={Styles.personListItemName}>{p.name}</TextParagraph>
-              <TextParagraph style={Styles.personListItemName}>{p.department?.name ?? '---'}</TextParagraph> 
-              {/* if dep is null return --- or return the department.name */}
-              <TextParagraph style={Styles.personListItemName}>{p.phone}</TextParagraph>
-            </View>
-            <ButtonContainer direction="column"> 
-              <MyButton 
-              text="Info" 
-              type="major" 
-              size="small" 
-              onPress={()=> {showViewPerson(p)}} 
+          <View style={Styles.personListItemDetails}>
+            <TextParagraph style={Styles.personListItemName}>{p.name}</TextParagraph>
+            <TextParagraph style={Styles.personListItemText}>{p.department?.name ?? '---'}</TextParagraph>
+            <TextParagraph style={Styles.personListItemText}>{p.phone}</TextParagraph>
+            {/*  */}
+          </View>
+          <ButtonContainer direction="column">
+            <MyButton
+              text="info"
+              type="major" // default*|major|minor
+              size="small" // small|medium*|large
+              onPress={() => {
+                showViewPerson(p);
+              }}
               buttonStyle={Styles.personListItemButton}
               textStyle={Styles.personListItemButtonText}
-              >
-              </MyButton>
-              <MyButton 
-              text="Edit" 
-              type="default" 
-              size="small" 
-              onPress={()=> {showEditPerson(p)}} 
+            />
+            <MyButton
+              text="Edit"
+              type="default" // default*|major|minor
+              size="small" // small|medium*|large
+              onPress={() => {
+                showEditPerson(p);
+              }}
               buttonStyle={Styles.personListItemButton}
               textStyle={Styles.personListItemButtonText}
-              >
-              </MyButton>
-              <MyButton 
-              text="Delete" 
-              type="minor" 
-              size="small" 
-              onPress={()=> {deletePerson(p)}} 
+            />
+            <MyButton
+              text="Delete"
+              type="minor" // default*|major|minor
+              size="small" // small|medium*|large
+              onPress={() => deletePerson(p)}
               buttonStyle={Styles.personListItemButton}
               textStyle={Styles.personListItemButtonText}
-              >
-              </MyButton>
-            </ButtonContainer>
+            />
+          </ButtonContainer>
         </View>
       );
     });
@@ -160,8 +161,28 @@ export default function ViewPeopleScreen(props) {
 
   // Main output of the screen component
   return (
-    <SafeAreaView style={Styles.safeAreaView}>
-      {displayPeople()}
-    </SafeAreaView>
+<SafeAreaView style={Styles.safeAreaView}>
+ 
+ <View style={Styles.personButtonContainer}>
+   <MyButton
+     text="+ Add new person"
+     type="major" // default*|major|minor
+     size="medium" // small|medium*|large
+     onPress={showAddPerson}
+   />
+   <MyButton
+     text="Refresh"
+     type="default" // default*|major|minor
+     size="medium" // small|medium*|large
+     onPress={refreshPersonList}
+   />
+ </View>
+
+ <ScrollView style={Styles.container} contentContainerStyle={Styles.contentContainer}>
+   <TextH1 style={{ marginTop: 0 }}>Listing all people</TextH1>
+   <View>{displayPeople()}</View>
+ </ScrollView>
+
+</SafeAreaView>
   );
 }
